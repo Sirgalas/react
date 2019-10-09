@@ -23,7 +23,7 @@ class App extends Component{
     }
     render(){
         return (
-            <MyLInk onClick={(e)=>this.handleClick(e,'test')}/>
+            <MyLInk onClick={this.handleClick}/>
         )
     }
 }
