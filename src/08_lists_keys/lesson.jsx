@@ -18,6 +18,7 @@ const Tab2 = () =>(
 const Tab3 = () =>(
     <h1>Text of tab3</h1>
 )
+const people = ['Jack','Max','Leo','Alex'];
 
 class App extends Component{
     state = {
@@ -39,6 +40,12 @@ class App extends Component{
               <div>
                   {`Active tab is: ${activeTab===1 ? 'first':activeTab===2 ? 'second':'third'}`}
               </div>
+              <ul>
+                  {people.map((person,index) =>(
+                      <li key={index}>{person}</li>
+                      ))
+                  }
+              </ul>
           </Fragment>
 
       );
