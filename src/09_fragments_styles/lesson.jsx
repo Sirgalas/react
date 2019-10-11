@@ -1,10 +1,10 @@
 import React, { Fragment} from 'react';
-import PropsTypes from 'prop-types';
-
+import './style.css'
+const style={color:'red',textTransform:'uppercase'}
 const Columns =()=>(
     <Fragment>
-        <td key="1">Hello</td>
-        <td key="2">World</td>
+        <td style={style}>Inline</td>
+        <td className="title" >Simple class</td>
     </Fragment>
 );
 
