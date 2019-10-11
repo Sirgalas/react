@@ -1,10 +1,12 @@
-import React, { Fragment, Component} from 'react';
+import React, { Fragment} from 'react';
 import PropsTypes from 'prop-types';
 
-const Columns =()=>([
-        <td key="1">Hello</td>,
+const Columns =()=>(
+    <Fragment>
+        <td key="1">Hello</td>
         <td key="2">World</td>
-    ])
+    </Fragment>
+);
 
 const Table = () =>(
     <table>
