@@ -24,15 +24,19 @@ class Form extends Component{
             position:''
         }
     }
-    inputRef =React.createRef();
-    textareaRef =React.createRef();
-    selectRef =React.createRef();
-
-    handleChange=()=>{
-        this.state({
-            inputText:this.inputRef.current.value,
-            textareaText:this.textareaRef.current.value,
-            selectText:this.selectRef.current.value
+    handleInputChange = ({target:{value}}) =>{
+        this.setState({
+            inputText:value,
+        })
+    }
+    handleTextareaChange = ({target:{value}}) =>{
+        this.setState({
+            textareaText:value,
+        })
+    }
+    handleSelectChange = ({target:{value}}) =>{
+        this.setState({
+            selectText:value,
         })
     }
 
@@ -50,7 +54,6 @@ class Form extends Component{
             }
         })
     }
-    getRef = (node) => {this.el = node};
     render(){
         const {inputText,textareaText,selectText,showData} = this.state;
         const {name,text,position} = showData;
@@ -58,13 +61,13 @@ class Form extends Component{
             <Fragment>
                 <form>
                     <label>
-                        <input ref={this.inputRef} type="text" name="name" value={inputText} onChange={this.handleChange}/>
+                        <input type="text" name="name" value={inputText} onChange={this.handleInputChange}/>
                     </label>
                     <br/>
                     <label htmlFor="text">Text:</label>
-                    <textarea ref={this.textareaRef} id="text" value={textareaText} onChange={this.handleChange}/>
+                    <textarea id="text" value={textareaText} onChange={this.handleTextareaChange}/>
                     <br/>
-                    <select ref={this.selectRef} value={selectText} onChange={this.handleChange}>
+                    <select value={selectText} onChange={this.handleSelectChange}>
                         {
                             POSITIONS.map(({id, value, title})=>
                                 (
