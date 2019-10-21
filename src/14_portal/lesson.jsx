@@ -1,37 +1,41 @@
-import React, { Component, Fragment} from 'react';
-//import { BrowserRouter as Router, Link } from 'react-router-dom';
-import LoadingHOC from './HOC/loadingHoc';
+import React, { Component} from 'react';
+import ReactDOM from 'react-dom';
 
-class AppComponentUI extends Component {
+class MyPortal extends Component {
+    el = document.createElement('div');
+    componentDidMount() {
+        document.body.appendChild(this.el);
+    }
+    componentWillUnmount() {
+        document.body.removeChild(this.el);
+    }
+
+    render(){
+        return ReactDOM.createPortal(this.props.children,this.el)
+    }
+}
+class Lesson extends Component{
+    state={
+        click:0,
+    }
+
+    hadleClick = () =>{
+        this.setState(({click})=>({
+            click:click+1,
+        }))
+    }
+
     render() {
         return(
-                <div>{this.props.data.title}</div>
-            );
-    }
-}
-
-const AppComponent =LoadingHOC('data')(AppComponentUI);
-
-class Lesson extends Component{
-    state = {
-        data:{},
-}
-
-    componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/todos/1')
-            .then(response=>response.json())
-            .then(data =>this.updateState(data))
-    }
-    updateState = (data)=>{
-        window.setTimeout(()=>{
-            this.setState({data})
-        },3000)
-    }
-    render(){
-
-        return(
-            <AppComponent data = {this.state.data} />
-        );
+            <div onClick={this.hadleClick}>
+                <span>TEXT</span>
+                <p>Clicks: {this.state.click}</p>
+                <MyPortal>
+                    <div>TEST PORTAL</div>
+                    <button>Click</button>
+                </MyPortal>
+            </div>
+        )
     }
 }
 

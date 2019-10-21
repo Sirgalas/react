@@ -5,8 +5,8 @@ import LoadingHOC from './HOC/loadingHoc';
 class AppComponentUI extends Component {
     render() {
         return(
-                <div>{this.props.data.title}</div>
-            );
+            <div>{this.props.data.title}</div>
+        );
     }
 }
 
@@ -15,7 +15,7 @@ const AppComponent =LoadingHOC('data')(AppComponentUI);
 class Lesson extends Component{
     state = {
         data:{},
-}
+    }
 
     componentDidMount() {
         fetch('https://jsonplaceholder.typicode.com/todos/1')
@@ -37,3 +37,5 @@ class Lesson extends Component{
 
 
 export default Lesson;
+
+
