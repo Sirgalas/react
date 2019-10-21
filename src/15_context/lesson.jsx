@@ -1,14 +1,14 @@
 import React, { Component} from 'react';
 
-const LevelThree=()=><h1></h1>
-const LevelTwo=()=><LevelThree/>
-const LevelOne=()=><LevelTwo/>
+const LevelThree=({title})=><h1>{title}</h1>
+const LevelTwo=({tilte})=><LevelThree title={tilte}/>
+const LevelOne=({title})=><LevelTwo tilte={title}/>
 
 class Lesson extends Component{
 
     render() {
         return(
-            <div>...</div>
+            <LevelOne title="simple title" />
         )
     }
 }
