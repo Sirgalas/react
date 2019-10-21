@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import  Title from '../../components/title/title';
-import NewsPost from '../../components/news/news'
+import NewsPost from '../../components/news/news';
+import Input from '../../components/input/input'
 
 const BASE_PATH= 'https://hn.algolia.com/api/v1';
 const SEARCH_PATH='/search';
@@ -13,10 +14,27 @@ class  News extends  Component{
     }
     componentDidMount() {
         const {searchQuery}=this.state;
+        this.fetchData(searchQuery)
+    }
+
+    fetchData = (searchQuery)=>{
         fetch(`${BASE_PATH}${SEARCH_PATH}?${SEARCH_PARAM}${searchQuery}`)
             .then(res=>res.json())
             .then(result => this.setNews(result))
             .catch(error => error);
+    }
+
+    handleInputChange =({target:{value}})=>{
+        this.setState({
+            searchQuery:value
+        })
+    }
+
+    getSearch =({key})=>{
+        if(key==='Enter'){
+            const {searchQuery}=this.state;
+            this.fetchData(searchQuery);
+        }
     }
 
     setNews = result =>{
@@ -32,6 +50,7 @@ class  News extends  Component{
         return (
             <div className="wrapper">
                 <Title title="Haker News" />
+                <Input onKeyPress={this.getSearch} onChange={this.handleInputChange} value={searchQuery}/>
                 <ul className="newsList">
                     {hits.map(({author, created_at,num_comments,objectsID,title,points,url})=>
                     <NewsPost

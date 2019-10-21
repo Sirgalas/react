@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './16_api_one/lesson.jsx';
+import App from './16_api_one/containers/news/news';
 import registerServiceWorker from './registerServiceWorker';
 // Syntax without JSX
 // React.createElement('div', null, 'Simple div with text');
