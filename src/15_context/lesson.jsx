@@ -1,14 +1,22 @@
 import React, { Component} from 'react';
 
-const LevelThree=({title})=><h1>{title}</h1>
-const LevelTwo=({tilte})=><LevelThree title={tilte}/>
-const LevelOne=({title})=><LevelTwo tilte={title}/>
+
+const  TitleContext = React.createContext();
+const LevelThree=()=>(
+    <TitleContext.Consumer>
+        {title =><h1>{title}</h1>}
+    </TitleContext.Consumer>
+    )
+const LevelTwo=()=><LevelThree  />
+const LevelOne=()=><LevelTwo  />
 
 class Lesson extends Component{
 
     render() {
         return(
-            <LevelOne title="simple title" />
+            <TitleContext.Provider value="Simple title">
+                <LevelOne />
+            </TitleContext.Provider>
         )
     }
 }
