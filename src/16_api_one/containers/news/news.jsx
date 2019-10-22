@@ -7,6 +7,7 @@ const BASE_PATH= 'https://hn.algolia.com/api/v1';
 const SEARCH_PATH='/search';
 const SEARCH_PARAM = 'query=';
 
+
 class  News extends  Component{
     state={
         searchQuery:'',
